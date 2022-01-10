@@ -12,10 +12,16 @@ import (
 //     NullableString
 func TypeDisplayName(value string) string {
 	out := value
+
+	if strings.HasPrefix(value, "optional.Value") {
+		var typ string
+		fmt.Sscanf(value, "optional.Value[%s]", &typ)
+		out = fmt.Sprintf("optional_%s", typ)
+	}
+
 	if strings.HasPrefix(value, "*") {
 		out = strings.Replace(out, "*", "nullable_", 1)
 	}
-
 
 	if strings.Contains(value, "[]") {
 		out = strings.ReplaceAll(out, "[]", "")

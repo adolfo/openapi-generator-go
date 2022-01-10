@@ -513,6 +513,10 @@ func structPropsFromRef(ref *openapi3.SchemaRef) (specs []PropSpec, imports []st
 			imports = append(imports, "time")
 		}
 
+		if spec.IsNullable {
+			imports = append(imports, "github.com/adolfo/optional-go")
+		}
+
 		spec.JSONTags = "`json:\"" + name
 		if !spec.IsRequired {
 			spec.JSONTags += ",omitempty"

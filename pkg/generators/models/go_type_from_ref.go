@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -88,8 +89,7 @@ func goTypeFromSpec(schemaRef *openapi3.SchemaRef) string {
 	if schema.Nullable &&
 		!strings.HasPrefix(propertyType, "[]") &&
 		!strings.HasPrefix(propertyType, "map[") {
-
-		propertyType = "*" + propertyType
+		propertyType = fmt.Sprintf("optional.Value[%s]", propertyType)
 	}
 	return propertyType
 }

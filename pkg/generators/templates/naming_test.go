@@ -8,6 +8,7 @@ import (
 
 func TestTypeDisplayName(t *testing.T) {
 	require.Equal(t, "NullableString", TypeDisplayName("*string"))
+	require.Equal(t, "OptionalString", TypeDisplayName("optional.Value[string]"))
 	require.Equal(t, "StringSlice", TypeDisplayName("[]string"))
 	require.Equal(t, "InterfaceSlice", TypeDisplayName("[]interface{}"))
 	require.Equal(t, "InterfaceSliceSlice", TypeDisplayName("[][]interface{}"))
