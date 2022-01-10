@@ -68,14 +68,3 @@ func (m {{$modelName}}) Validate() error {
 		{{- end }}
 	}.Filter()
 }
-{{ range .Properties}}
-// Get{{.Name}} returns the {{.Name}} property
-func (m {{$modelName}}) Get{{.Name}}() {{.GoType}} {
-	return m.{{.Name}}
-}
-
-// Set{{.Name}} sets the {{.Name}} property
-func (m *{{$modelName}}) Set{{.Name}}(val {{.GoType}}) {
-	m.{{.Name}} = val
-}
-{{ end}}
