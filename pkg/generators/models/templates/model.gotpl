@@ -61,6 +61,7 @@ func (m {{$modelName}}) Validate() error {
 					{{- if .IsIPv4 }}is.IPv4,{{ end }}
 					{{- if .IsIPv6 }}is.IPv6,{{ end }}
 					{{- if .IsIP }}is.IP,{{ end }}
+					{{- if .IsEnum }}InKnown{{ .Name }},{{ end }}
 					{{- if .Pattern }}validation.Match({{ $modelName | firstLower }}{{.Name}}Pattern){{if .PatternErrorMsg}}.ErrorObject({{ $modelName}}{{.Name}}PatternError){{end}},{{ end }}
 				),
 			{{- end }}
