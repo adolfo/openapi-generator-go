@@ -196,7 +196,7 @@ func NewModelFromParameters(params openapi3.Parameters) (model *Model, err error
 		if !spec.IsRequired {
 			spec.JSONTags += ",omitempty"
 		}
-		spec.JSONTags += "\"`"
+		spec.JSONTags += "\" schema:\"" + param.Value.Name + "\"`"
 
 		model.Properties = append(model.Properties, spec)
 	}
