@@ -43,7 +43,7 @@ func (m {{$modelName}}) Validate() error {
 	return validation.Errors{
 		{{- range .Properties}}
 			{{- if .NeedsValidation }}
-				"{{ firstLower .Name }}": validation.Validate(
+				"{{ toSnakeCase .Name }}": validation.Validate(
 					m.{{ .Name }},
 					{{- if and .IsRequiredInValidation}}validation.Required,{{- end }}
 					{{- if .HasMin }}validation.Min({{ .GoType }}({{ .Min }})),{{ end }}
