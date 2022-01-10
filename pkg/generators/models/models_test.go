@@ -43,11 +43,11 @@ var cases = []struct {
 	},
 	// 5
 	{
-		name:      "untyped object converts to map[string]interface{}",
+		name:      "untyped object converts to map[string]any",
 		directory: "testdata/cases/untyped_object",
 	},
 	{
-		name:      "oneOf converts to interface{}",
+		name:      "oneOf converts to any",
 		directory: "testdata/cases/oneof",
 	},
 	{

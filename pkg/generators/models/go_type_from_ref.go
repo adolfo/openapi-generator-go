@@ -46,7 +46,7 @@ func goTypeFromSpec(schemaRef *openapi3.SchemaRef) string {
 		}
 
 	case "array":
-		subType := "interface{}"
+		subType := "any"
 		if schema.Items != nil {
 			subType = goTypeFromSpec(schema.Items)
 		}
@@ -82,7 +82,7 @@ func goTypeFromSpec(schemaRef *openapi3.SchemaRef) string {
 	case "ref":
 		propertyType = filepath.Base(schemaRef.Ref)
 	case "":
-		propertyType = "interface{}"
+		propertyType = "any"
 	}
 
 	if schema.Nullable &&
@@ -106,7 +106,7 @@ func goTypeForObject(schemaRef *openapi3.SchemaRef) (propType string) {
 
 	case schemaRef.Value.AdditionalPropertiesAllowed != nil &&
 		*schemaRef.Value.AdditionalPropertiesAllowed:
-		propType = "map[string]interface{}"
+		propType = "map[string]any"
 
 	case len(schemaRef.Value.Properties) > 0:
 		structBuilder := &strings.Builder{}
@@ -136,10 +136,10 @@ func goTypeForObject(schemaRef *openapi3.SchemaRef) (propType string) {
 		propType = structBuilder.String()
 
 	case len(schemaRef.Value.OneOf) > 0:
-		return "interface{}"
+		return "any"
 
 	default:
-		return "map[string]interface{}"
+		return "map[string]any"
 	}
 
 	return propType

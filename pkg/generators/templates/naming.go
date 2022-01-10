@@ -16,9 +16,6 @@ func TypeDisplayName(value string) string {
 		out = strings.Replace(out, "*", "nullable_", 1)
 	}
 
-	if strings.Contains(value, "interface{}") {
-		out = strings.ReplaceAll(out, "interface{}", "interface")
-	}
 
 	if strings.Contains(value, "[]") {
 		out = strings.ReplaceAll(out, "[]", "")
