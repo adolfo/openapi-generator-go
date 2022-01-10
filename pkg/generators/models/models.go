@@ -541,6 +541,9 @@ func structPropsFromRef(ref *openapi3.SchemaRef) (specs []PropSpec, imports []st
 func fillValidationRelatedProperties(ref *openapi3.SchemaRef, spec *PropSpec) (imports []string, err error) {
 	importsMap := make(map[string]something)
 
+	spec.NeedsValidation = !spec.IsNullable && spec.IsRequired
+	spec.IsRequiredInValidation = !spec.IsNullable && spec.IsRequired
+
 	if validatedTypesRegExp.MatchString(spec.GoType) {
 		// enable recursive validation
 		spec.NeedsValidation = true
@@ -615,12 +618,12 @@ func fillValidationRelatedProperties(ref *openapi3.SchemaRef, spec *PropSpec) (i
 	switch ref.Value.Format {
 	case "date":
 		spec.IsRequiredInValidation = !spec.IsNullable && spec.IsRequired
-		spec.IsRequired = true
+		spec.NeedsValidation = true
 		spec.IsDate = true
 
 	case "date-time":
 		spec.IsRequiredInValidation = !spec.IsNullable && spec.IsRequired
-		spec.IsRequired = true
+		spec.NeedsValidation = true
 		spec.IsDateTime = true
 		importsMap["time"] = something{}
 
