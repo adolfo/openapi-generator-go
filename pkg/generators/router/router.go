@@ -280,9 +280,8 @@ var (
 		"httpMethod":   httpMethod,
 		"commentBlock": tpl.CommentBlock,
 	}
-	routerTemplateSource = `package {{ .PackageName }}
-
-// This file is auto-generated, don't modify it manually
+	routerTemplateSource = `// This file is auto-generated, DO NOT EDIT.
+package {{ .PackageName }}
 
 import (
 	"net/http"

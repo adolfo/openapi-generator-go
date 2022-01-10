@@ -332,9 +332,8 @@ func TestGenerate(t *testing.T) {
 		err = Generate(specReader, outputWriter, Options{})
 		require.NoError(t, err)
 
-		expected := `package openapi
-
-// This file is auto-generated, don't modify it manually
+		expected := `// This file is auto-generated, DO NOT EDIT.
+package openapi
 
 import (
 	"net/http"
